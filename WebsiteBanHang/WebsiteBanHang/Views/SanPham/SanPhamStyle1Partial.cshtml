@@ -1,0 +1,24 @@
+﻿@model IEnumerable<WebsiteBanHang.Models.SanPham>
+<div class="content-top">
+    <div class="grid-in">
+
+        @foreach (var item in Model)
+            {
+            <div class="col-md-3 grid-top">
+                <a href="single.html" class="b-link-stripe b-animate-go  thickbox">
+                    <img class="img-responsive" src="@Url.Content("~/Content/HinhAnhSP/"+item.HinhAnh)" style="font-size:10px;text-align:left" alt="">
+                    <div class="b-wrapper">
+                        <h3 class="b-animate b-from-left    b-delay03 ">
+                            <span>@item.CauHinh</span>
+                        </h3>
+                    </div>
+                </a>
+                <p><a href="single.html">@item.TenSP</a></p>
+            </div>
+        }
+        <div class="clearfix"></div>
+
+    </div>
+</div>
+
+
