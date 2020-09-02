@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QuanLyBanHangModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="WebSiteBanHangModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BinhLuan">
           <Key>
             <PropertyRef Name="MaBL" />
@@ -125,17 +125,11 @@
           <Property Name="MaNSX" Type="int" />
           <Property Name="MaLoaiSP" Type="int" />
           <Property Name="DaXoa" Type="bit" />
-        </EntityType>
-        <EntityType Name="Table">
-          <Key>
-            <PropertyRef Name="MaChiTietDDH" />
-          </Key>
-          <Property Name="MaChiTietDDH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MaDDH" Type="int" />
-          <Property Name="MaSP" Type="int" />
-          <Property Name="TenSP" Type="nvarchar" MaxLength="255" />
-          <Property Name="SoLuong" Type="int" />
-          <Property Name="DonGia" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="HinhAnh1" Type="nvarchar(max)" />
+          <Property Name="HinhAnh2" Type="nvarchar(max)" />
+          <Property Name="HinhAnh3" Type="nvarchar(max)" />
+          <Property Name="HinhAnh4" Type="nvarchar(max)" />
+          <Property Name="DonGiaCu" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="ThanhVien">
           <Key>
@@ -296,30 +290,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Table_DonDatHang">
-          <End Role="DonDatHang" Type="Self.DonDatHang" Multiplicity="0..1" />
-          <End Role="Table" Type="Self.Table" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DonDatHang">
-              <PropertyRef Name="MaDDH" />
-            </Principal>
-            <Dependent Role="Table">
-              <PropertyRef Name="MaDDH" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Table_SanPham">
-          <End Role="SanPham" Type="Self.SanPham" Multiplicity="0..1" />
-          <End Role="Table" Type="Self.Table" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SanPham">
-              <PropertyRef Name="MaSP" />
-            </Principal>
-            <Dependent Role="Table">
-              <PropertyRef Name="MaSP" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ThanhVien_ToTable">
           <End Role="LoaiThanhVien" Type="Self.LoaiThanhVien" Multiplicity="0..1" />
           <End Role="ThanhVien" Type="Self.ThanhVien" Multiplicity="*" />
@@ -332,7 +302,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QuanLyBanHangModelStoreContainer">
+        <EntityContainer Name="WebSiteBanHangModelStoreContainer">
           <EntitySet Name="BinhLuan" EntityType="Self.BinhLuan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietDonDatHang" EntityType="Self.ChiTietDonDatHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietPhieuNhap" EntityType="Self.ChiTietPhieuNhap" Schema="dbo" store:Type="Tables" />
@@ -344,7 +314,6 @@
           <EntitySet Name="NhaSanXuat" EntityType="Self.NhaSanXuat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhieuNhap" EntityType="Self.PhieuNhap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThanhVien" EntityType="Self.ThanhVien" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_BinhLuan_SanPham" Association="Self.FK_BinhLuan_SanPham">
             <End Role="SanPham" EntitySet="SanPham" />
@@ -394,14 +363,6 @@
             <End Role="NhaSanXuat" EntitySet="NhaSanXuat" />
             <End Role="SanPham" EntitySet="SanPham" />
           </AssociationSet>
-          <AssociationSet Name="FK_Table_DonDatHang" Association="Self.FK_Table_DonDatHang">
-            <End Role="DonDatHang" EntitySet="DonDatHang" />
-            <End Role="Table" EntitySet="Table" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Table_SanPham" Association="Self.FK_Table_SanPham">
-            <End Role="SanPham" EntitySet="SanPham" />
-            <End Role="Table" EntitySet="Table" />
-          </AssociationSet>
           <AssociationSet Name="FK_ThanhVien_ToTable" Association="Self.FK_ThanhVien_ToTable">
             <End Role="LoaiThanhVien" EntitySet="LoaiThanhVien" />
             <End Role="ThanhVien" EntitySet="ThanhVien" />
@@ -411,7 +372,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="QuanLyBanHangModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="WebSiteBanHangModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="BinhLuan">
           <Key>
             <PropertyRef Name="MaBL" />
@@ -461,7 +422,6 @@
           <Property Name="UuDai" Type="Int32" />
           <NavigationProperty Name="ChiTietDonDatHangs" Relationship="Self.FK_ChiTietDonDatHang_DonDatHang" FromRole="DonDatHang" ToRole="ChiTietDonDatHang" />
           <NavigationProperty Name="KhachHang" Relationship="Self.FK_DonDatHang_KhachHang" FromRole="DonDatHang" ToRole="KhachHang" />
-          <NavigationProperty Name="Tables" Relationship="Self.FK_Table_DonDatHang" FromRole="DonDatHang" ToRole="Table" />
         </EntityType>
         <EntityType Name="KhachHang">
           <Key>
@@ -550,26 +510,17 @@
           <Property Name="MaNSX" Type="Int32" />
           <Property Name="MaLoaiSP" Type="Int32" />
           <Property Name="DaXoa" Type="Boolean" />
+          <Property Name="HinhAnh1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HinhAnh2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HinhAnh3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HinhAnh4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DonGiaCu" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="BinhLuans" Relationship="Self.FK_BinhLuan_SanPham" FromRole="SanPham" ToRole="BinhLuan" />
           <NavigationProperty Name="ChiTietDonDatHangs" Relationship="Self.FK_ChiTietDonDatHang_SanPham" FromRole="SanPham" ToRole="ChiTietDonDatHang" />
           <NavigationProperty Name="ChiTietPhieuNhaps" Relationship="Self.FK_ChiTietPhieuNhap_SanPham" FromRole="SanPham" ToRole="ChiTietPhieuNhap" />
           <NavigationProperty Name="LoaiSanPham" Relationship="Self.FK_SanPham_LoaiSanPham" FromRole="SanPham" ToRole="LoaiSanPham" />
           <NavigationProperty Name="NhaCungCap" Relationship="Self.FK_SanPham_NhaCungCap" FromRole="SanPham" ToRole="NhaCungCap" />
           <NavigationProperty Name="NhaSanXuat" Relationship="Self.FK_SanPham_NhaSanXuat" FromRole="SanPham" ToRole="NhaSanXuat" />
-          <NavigationProperty Name="Tables" Relationship="Self.FK_Table_SanPham" FromRole="SanPham" ToRole="Table" />
-        </EntityType>
-        <EntityType Name="Table">
-          <Key>
-            <PropertyRef Name="MaChiTietDDH" />
-          </Key>
-          <Property Name="MaChiTietDDH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MaDDH" Type="Int32" />
-          <Property Name="MaSP" Type="Int32" />
-          <Property Name="TenSP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="SoLuong" Type="Int32" />
-          <Property Name="DonGia" Type="Decimal" Precision="18" Scale="0" />
-          <NavigationProperty Name="DonDatHang" Relationship="Self.FK_Table_DonDatHang" FromRole="Table" ToRole="DonDatHang" />
-          <NavigationProperty Name="SanPham" Relationship="Self.FK_Table_SanPham" FromRole="Table" ToRole="SanPham" />
         </EntityType>
         <EntityType Name="ThanhVien">
           <Key>
@@ -673,18 +624,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Table_DonDatHang">
-          <End Role="DonDatHang" Type="Self.DonDatHang" Multiplicity="0..1" />
-          <End Role="Table" Type="Self.Table" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DonDatHang">
-              <PropertyRef Name="MaDDH" />
-            </Principal>
-            <Dependent Role="Table">
-              <PropertyRef Name="MaDDH" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_KhachHang_ToTable">
           <End Role="ThanhVien" Type="Self.ThanhVien" Multiplicity="0..1" />
           <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="*" />
@@ -757,19 +696,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Table_SanPham">
-          <End Role="SanPham" Type="Self.SanPham" Multiplicity="0..1" />
-          <End Role="Table" Type="Self.Table" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SanPham">
-              <PropertyRef Name="MaSP" />
-            </Principal>
-            <Dependent Role="Table">
-              <PropertyRef Name="MaSP" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="QuanLyBanHangEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="WebSiteBanHangEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BinhLuans" EntityType="Self.BinhLuan" />
           <EntitySet Name="ChiTietDonDatHangs" EntityType="Self.ChiTietDonDatHang" />
           <EntitySet Name="ChiTietPhieuNhaps" EntityType="Self.ChiTietPhieuNhap" />
@@ -781,7 +708,6 @@
           <EntitySet Name="NhaSanXuats" EntityType="Self.NhaSanXuat" />
           <EntitySet Name="PhieuNhaps" EntityType="Self.PhieuNhap" />
           <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
-          <EntitySet Name="Tables" EntityType="Self.Table" />
           <EntitySet Name="ThanhViens" EntityType="Self.ThanhVien" />
           <AssociationSet Name="FK_BinhLuan_SanPham" Association="Self.FK_BinhLuan_SanPham">
             <End Role="SanPham" EntitySet="SanPhams" />
@@ -811,10 +737,6 @@
             <End Role="KhachHang" EntitySet="KhachHangs" />
             <End Role="DonDatHang" EntitySet="DonDatHangs" />
           </AssociationSet>
-          <AssociationSet Name="FK_Table_DonDatHang" Association="Self.FK_Table_DonDatHang">
-            <End Role="DonDatHang" EntitySet="DonDatHangs" />
-            <End Role="Table" EntitySet="Tables" />
-          </AssociationSet>
           <AssociationSet Name="FK_KhachHang_ToTable" Association="Self.FK_KhachHang_ToTable">
             <End Role="ThanhVien" EntitySet="ThanhViens" />
             <End Role="KhachHang" EntitySet="KhachHangs" />
@@ -839,19 +761,15 @@
             <End Role="NhaSanXuat" EntitySet="NhaSanXuats" />
             <End Role="SanPham" EntitySet="SanPhams" />
           </AssociationSet>
-          <AssociationSet Name="FK_Table_SanPham" Association="Self.FK_Table_SanPham">
-            <End Role="SanPham" EntitySet="SanPhams" />
-            <End Role="Table" EntitySet="Tables" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QuanLyBanHangModelStoreContainer" CdmEntityContainer="QuanLyBanHangEntities">
+        <EntityContainerMapping StorageEntityContainer="WebSiteBanHangModelStoreContainer" CdmEntityContainer="WebSiteBanHangEntities">
           <EntitySetMapping Name="BinhLuans">
-            <EntityTypeMapping TypeName="QuanLyBanHangModel.BinhLuan">
+            <EntityTypeMapping TypeName="WebSiteBanHangModel.BinhLuan">
               <MappingFragment StoreEntitySet="BinhLuan">
                 <ScalarProperty Name="MaBL" ColumnName="MaBL" />
                 <ScalarProperty Name="NoiDungPN" ColumnName="NoiDungPN" />
@@ -861,7 +779,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ChiTietDonDatHangs">
-            <EntityTypeMapping TypeName="QuanLyBanHangModel.ChiTietDonDatHang">
+            <EntityTypeMapping TypeName="WebSiteBanHangModel.ChiTietDonDatHang">
               <MappingFragment StoreEntitySet="ChiTietDonDatHang">
                 <ScalarProperty Name="MaChiTietDDH" ColumnName="MaChiTietDDH" />
                 <ScalarProperty Name="MaDDH" ColumnName="MaDDH" />
@@ -873,7 +791,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ChiTietPhieuNhaps">
-            <EntityTypeMapping TypeName="QuanLyBanHangModel.ChiTietPhieuNhap">
+            <EntityTypeMapping TypeName="WebSiteBanHangModel.ChiTietPhieuNhap">
               <MappingFragment StoreEntitySet="ChiTietPhieuNhap">
                 <ScalarProperty Name="MaChiTietPN" ColumnName="MaChiTietPN" />
                 <ScalarProperty Name="MaPN" ColumnName="MaPN" />
@@ -884,7 +802,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DonDatHangs">
-            <EntityTypeMapping TypeName="QuanLyBanHangModel.DonDatHang">
+            <EntityTypeMapping TypeName="WebSiteBanHangModel.DonDatHang">
               <MappingFragment StoreEntitySet="DonDatHang">
                 <ScalarProperty Name="MaDDH" ColumnName="MaDDH" />
                 <ScalarProperty Name="NgayDat" ColumnName="NgayDat" />
@@ -897,7 +815,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="KhachHangs">
-            <EntityTypeMapping TypeName="QuanLyBanHangModel.KhachHang">
+            <EntityTypeMapping TypeName="WebSiteBanHangModel.KhachHang">
               <MappingFragment StoreEntitySet="KhachHang">
                 <ScalarProperty Name="MaKH" ColumnName="MaKH" />
                 <ScalarProperty Name="TenKH" ColumnName="TenKH" />
@@ -909,7 +827,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LoaiSanPhams">
-            <EntityTypeMapping TypeName="QuanLyBanHangModel.LoaiSanPham">
+            <EntityTypeMapping TypeName="WebSiteBanHangModel.LoaiSanPham">
               <MappingFragment StoreEntitySet="LoaiSanPham">
                 <ScalarProperty Name="MaLoaiSP" ColumnName="MaLoaiSP" />
                 <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
@@ -919,7 +837,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LoaiThanhViens">
-            <EntityTypeMapping TypeName="QuanLyBanHangModel.LoaiThanhVien">
+            <EntityTypeMapping TypeName="WebSiteBanHangModel.LoaiThanhVien">
               <MappingFragment StoreEntitySet="LoaiThanhVien">
                 <ScalarProperty Name="MaLoaiTV" ColumnName="MaLoaiTV" />
                 <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
@@ -928,7 +846,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NhaCungCaps">
-            <EntityTypeMapping TypeName="QuanLyBanHangModel.NhaCungCap">
+            <EntityTypeMapping TypeName="WebSiteBanHangModel.NhaCungCap">
               <MappingFragment StoreEntitySet="NhaCungCap">
                 <ScalarProperty Name="MaNCC" ColumnName="MaNCC" />
                 <ScalarProperty Name="TenNCC" ColumnName="TenNCC" />
@@ -940,7 +858,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NhaSanXuats">
-            <EntityTypeMapping TypeName="QuanLyBanHangModel.NhaSanXuat">
+            <EntityTypeMapping TypeName="WebSiteBanHangModel.NhaSanXuat">
               <MappingFragment StoreEntitySet="NhaSanXuat">
                 <ScalarProperty Name="MaNSX" ColumnName="MaNSX" />
                 <ScalarProperty Name="TenNSX" ColumnName="TenNSX" />
@@ -950,7 +868,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PhieuNhaps">
-            <EntityTypeMapping TypeName="QuanLyBanHangModel.PhieuNhap">
+            <EntityTypeMapping TypeName="WebSiteBanHangModel.PhieuNhap">
               <MappingFragment StoreEntitySet="PhieuNhap">
                 <ScalarProperty Name="MaPN" ColumnName="MaPN" />
                 <ScalarProperty Name="MaNCC" ColumnName="MaNCC" />
@@ -960,7 +878,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SanPhams">
-            <EntityTypeMapping TypeName="QuanLyBanHangModel.SanPham">
+            <EntityTypeMapping TypeName="WebSiteBanHangModel.SanPham">
               <MappingFragment StoreEntitySet="SanPham">
                 <ScalarProperty Name="MaSP" ColumnName="MaSP" />
                 <ScalarProperty Name="TenSP" ColumnName="TenSP" />
@@ -979,23 +897,16 @@
                 <ScalarProperty Name="MaNSX" ColumnName="MaNSX" />
                 <ScalarProperty Name="MaLoaiSP" ColumnName="MaLoaiSP" />
                 <ScalarProperty Name="DaXoa" ColumnName="DaXoa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tables">
-            <EntityTypeMapping TypeName="QuanLyBanHangModel.Table">
-              <MappingFragment StoreEntitySet="Table">
-                <ScalarProperty Name="MaChiTietDDH" ColumnName="MaChiTietDDH" />
-                <ScalarProperty Name="MaDDH" ColumnName="MaDDH" />
-                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
-                <ScalarProperty Name="TenSP" ColumnName="TenSP" />
-                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
-                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="HinhAnh1" ColumnName="HinhAnh1" />
+                <ScalarProperty Name="HinhAnh2" ColumnName="HinhAnh2" />
+                <ScalarProperty Name="HinhAnh3" ColumnName="HinhAnh3" />
+                <ScalarProperty Name="HinhAnh4" ColumnName="HinhAnh4" />
+                <ScalarProperty Name="DonGiaCu" ColumnName="DonGiaCu" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ThanhViens">
-            <EntityTypeMapping TypeName="QuanLyBanHangModel.ThanhVien">
+            <EntityTypeMapping TypeName="WebSiteBanHangModel.ThanhVien">
               <MappingFragment StoreEntitySet="ThanhVien">
                 <ScalarProperty Name="MaThanhVien" ColumnName="MaThanhVien" />
                 <ScalarProperty Name="TaiKhoan" ColumnName="TaiKhoan" />

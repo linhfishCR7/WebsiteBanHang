@@ -10,7 +10,8 @@ namespace WebsiteBanHang.Controllers
     public class KhachHangController : Controller
     {
         // GET: KhachHang
-        QuanLyBanHangEntities db = new QuanLyBanHangEntities();
+        WebSiteBanHangEntities db = new WebSiteBanHangEntities();
+
         public ActionResult Index()
         {
             // var lstKH = from KH in db.KhachHangs select KH;

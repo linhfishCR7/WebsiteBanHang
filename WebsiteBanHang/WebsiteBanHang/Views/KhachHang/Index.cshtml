@@ -1,6 +1,7 @@
-﻿@model IEnumberable<WebsiteBanHang.Models.KhachHang>
+﻿@model IEnumerable<WebsiteBanHang.Models.KhachHang>
 @{
-    Layout = null;
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+
 }
 
 <!DOCTYPE html>
@@ -20,9 +21,15 @@
                 <td>Email</td>
                 <td>Phone Number</td>
             </tr>
-            @foreach ()
+            @foreach (var item in Model)
             {
-
+                <tr>
+                    <td>@item.MaKH</td>
+                    <td>@item.TenKH</td>
+                    <td>@item.DiaChi</td>
+                    <td>@item.Email</td>
+                    <td>@item.SoDienThoai</td>
+                </tr>
             }
         </table>
     </div>

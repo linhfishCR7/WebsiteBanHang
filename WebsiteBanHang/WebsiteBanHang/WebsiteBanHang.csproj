@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CaptchaMvc, Version=2.5.0.0, Culture=neutral, PublicKeyToken=fe46ad421dd3b0e6, processorArchitecture=MSIL">
+      <HintPath>..\packages\CaptchaMvc.Mvc5.1.5.0\lib\net45-full\CaptchaMvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -197,11 +201,14 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhachHangController.cs" />
+    <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Metadata\ThanhVien.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BinhLuan.cs">
       <DependentUpon>QuanLyBanHang.tt</DependentUpon>
@@ -215,6 +222,7 @@
     <Compile Include="Models\DonDatHang.cs">
       <DependentUpon>QuanLyBanHang.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ItemGioHang.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\KhachHang.cs">
       <DependentUpon>QuanLyBanHang.tt</DependentUpon>
@@ -253,9 +261,6 @@
     <Compile Include="Models\SanPham.cs">
       <DependentUpon>QuanLyBanHang.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Table.cs">
-      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ThanhVien.cs">
       <DependentUpon>QuanLyBanHang.tt</DependentUpon>
     </Compile>
@@ -273,6 +278,31 @@
     <Content Include="Content\css\flexslider.css" />
     <Content Include="Content\css\memenu.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\HinhAnhSP\huawei-p40-400x460-1-400x460.png" />
+    <Content Include="Content\HinhAnhSP\huawei-p40-re-up-200x200-1-180x125.png" />
+    <Content Include="Content\HinhAnhSP\iphone-11-black-200-180x125.png" />
+    <Content Include="Content\HinhAnhSP\iphone-11-green-200-180x125.png" />
+    <Content Include="Content\HinhAnhSP\iphone-11-purple-200-180x125.png" />
+    <Content Include="Content\HinhAnhSP\iphone-11-red-2-400x460-400x460.png" />
+    <Content Include="Content\HinhAnhSP\iphone-11-white-200-180x125.png" />
+    <Content Include="Content\HinhAnhSP\oppo-reno3-den-200x200-1-180x125.png" />
+    <Content Include="Content\HinhAnhSP\oppo-reno3-trang-200x200-1-180x125.png" />
+    <Content Include="Content\HinhAnhSP\oppo-reno3-trang-400x460-400x460.png" />
+    <Content Include="Content\HinhAnhSP\oppo-reno3-xanh-200x200-2-180x125.png" />
+    <Content Include="Content\HinhAnhSP\samsung-galaxy-a21s-055620-045627-400x460.png" />
+    <Content Include="Content\HinhAnhSP\samsung-galaxy-a21s-den-200x200-180x125.png" />
+    <Content Include="Content\HinhAnhSP\apple-macbook-air-mqd32sa-a-i5-5350u-600x600.jpg" />
+    <Content Include="Content\HinhAnhSP\asus-vivobook-x509ma-n4020-br271t-224411-600x600.jpg" />
+    <Content Include="Content\HinhAnhSP\dell-inspiron-3493-i5-n4i5122w-1-1-180x125.jpg" />
+    <Content Include="Content\HinhAnhSP\dell-inspiron-3493-i5-n4i5122w-222088-600x600.jpg" />
+    <Content Include="Content\HinhAnhSP\hp-348-g7-i3-9pg83pa-221511-600x600.jpg" />
+    <Content Include="Content\HinhAnhSP\huawei-mediapad-t5-33397-hinhchitiet-400x460.png" />
+    <Content Include="Content\HinhAnhSP\ipad-10-2-inch-wifi-32gb-2019-gold-400x460.png" />
+    <Content Include="Content\HinhAnhSP\ipad-10-2-inch-wifi-32gb-2019-gray-200-180x125.png" />
+    <Content Include="Content\HinhAnhSP\ipad-10-2-inch-wifi-32gb-2019-silver-200-180x125.png" />
+    <Content Include="Content\HinhAnhSP\lenovo-tab-e10-tb-x104l-den-400x460.png" />
+    <Content Include="Content\HinhAnhSP\samsung-galaxy-tab-s6-lite-xam-200x200-180x125.png" />
+    <Content Include="Content\HinhAnhSP\samsung-galaxy-tab-s6-lite-xanh-400x460-400x460.png" />
     <Content Include="Content\images\111111.jpg" />
     <Content Include="Content\images\b1.jpg" />
     <Content Include="Content\images\b2.jpg" />
@@ -346,6 +376,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Login\images\Thumbs.db" />
     <EntityDeploy Include="Models\QuanLyBanHang.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>QuanLyBanHang.Designer.cs</LastGenOutput>
@@ -353,11 +384,12 @@
     <Content Include="Models\QuanLyBanHang.edmx.diagram">
       <DependentUpon>QuanLyBanHang.edmx</DependentUpon>
     </Content>
-    <Content Include="Content\Login\images\Thumbs.db" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -381,6 +413,18 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Demo.cshtml" />
     <Content Include="Views\Layout\LoginUserLayout.cshtml" />
+    <Content Include="Views\SanPham\SanPhamStyle1Partial.cshtml" />
+    <Content Include="Views\SanPham\SanPhamStyle2Partial.cshtml" />
+    <Content Include="Views\Home\MenuPartial.cshtml" />
+    <Content Include="Views\Layout\ProductLayout.cshtml" />
+    <Content Include="Views\SanPham\XemChiTiet.cshtml" />
+    <Content Include="Views\Home\DangKy1.cshtml" />
+    <Content Include="Views\Layout\_HeaderTopPartial.cshtml" />
+    <Content Include="Views\Home\DangKy.cshtml" />
+    <Content Include="Views\GioHang\XemGioHang.cshtml" />
+    <Content Include="Views\GioHang\GioHangPartial.cshtml" />
+    <Content Include="Views\GioHang\ThongBao.cshtml" />
+    <Content Include="Views\SanPham\SanPham.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

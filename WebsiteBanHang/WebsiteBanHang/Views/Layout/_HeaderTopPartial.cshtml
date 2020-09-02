@@ -1,0 +1,90 @@
+﻿@using WebsiteBanHang.Models;
+<div class="header-top">
+    <div class="container">
+        <div class="search">
+            <form>
+                <input type="text" value="Search " onfocus="this.value = ''" onblur="if (this.value == '') {this.value = 'Search';}">
+                <input type="submit" value="Go">
+            </form>
+        </div>
+        <div class="header-left">
+            <ul>
+                @if (Session["TaiKhoan"] != null && Session["TaiKhoan"] != "")
+                {
+                    ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
+
+                    <li style="color:aqua;">Chào @tv.HoTen</li>
+                    <li>@Html.ActionLink("Đăng Xuất", "DangXuat", "Home")</li>
+                }
+                else
+                {
+                    <li><a id="btnDangNhap" href="#">Login</a></li>
+                    <li><a href="@Url.Action("DangKy","Home")">Register</a></li>
+                }
+
+
+            </ul>
+            @*chen partial view giohang vao layout sang 1 partial view moi*@
+            @Html.Action("GioHangPartial", "GioHang");
+            <div class="clearfix"> </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+
+<div>
+
+    <div id="popup_login">
+        <div class="login-form" id="login-form" style="height:450px;">
+            <div style="clear:both; text-align:right;margin-bottom:0;">
+                <span id="close-form" class="btn btn-danger">X</span>
+            </div>
+            <h2>User Login</h2>
+            <div class="form-info">
+                @using (Ajax.BeginForm("DangNhap", "Home",new AjaxOptions { InsertionMode=InsertionMode.Replace, UpdateTargetId="ThongBao" }))
+                {
+
+                    <input type="text" class="email" name="txtTenDangNhap" placeholder="Email Address" required="">
+                    <input type="password" class="password" name="txtMatKhau" placeholder="Password" required="">
+                    <p><a href="#">Forgot password?</a></p>
+                    <h3 style="color: red; text-align:left" id="ThongBao"></h3>
+                    <ul class="login-buttons">
+                        <li><input type="submit" value="LOGIN" id="btnDangNhap1"></li>
+                        <li><a href="@Url.Action("DangKy", "Home")" class="hvr-sweep-to-left" style="margin-left: 10px;">REGISTER</a></li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+<style>
+    #close-form {
+        color: white;
+    }
+
+
+    #popup_login {
+        position: fixed;
+        background-color: rgba(0,0,0,.5);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 99;
+        display: none;
+    }
+
+    #login-form {
+        cursor: pointer;
+    }
+</style>
+
+<script type="text/javascript">
+    $("#btnDangNhap").click(function () {
+        $("#popup_login").css("display", "block");
+    });
+    $("#close-form").click(function () {
+        $("#popup_login").css("display", "none");
+    });
+</script>

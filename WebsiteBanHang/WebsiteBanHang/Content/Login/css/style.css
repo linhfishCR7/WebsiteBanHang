@@ -28,7 +28,7 @@ nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
 img{max-width:100%;}
 /*end reset*/
 body{
-	background: url(../images/bg.jpg) no-repeat 0px 0px;
+	/*background: url(../images/bg.jpg) no-repeat 0px 0px;*/
 	font-family: 'Open Sans', sans-serif;
 	text-align: center;
 	background-size:cover;
@@ -61,7 +61,7 @@ h1 {
 	  width: 25%;
 	  margin: 3% auto 0;
 	  padding: 25px;
-	  height: 310px;
+	  height: 450px;
 	  border-radius: 3px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;

@@ -13,10 +13,10 @@ namespace WebsiteBanHang.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class QuanLyBanHangEntities : DbContext
+    public partial class WebSiteBanHangEntities : DbContext
     {
-        public QuanLyBanHangEntities()
-            : base("name=QuanLyBanHangEntities")
+        public WebSiteBanHangEntities()
+            : base("name=WebSiteBanHangEntities")
         {
         }
     
@@ -36,7 +36,6 @@ namespace WebsiteBanHang.Models
         public virtual DbSet<NhaSanXuat> NhaSanXuats { get; set; }
         public virtual DbSet<PhieuNhap> PhieuNhaps { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
-        public virtual DbSet<Table> Tables { get; set; }
         public virtual DbSet<ThanhVien> ThanhViens { get; set; }
     }
 }

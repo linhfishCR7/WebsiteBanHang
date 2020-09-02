@@ -5,15 +5,15 @@
         @foreach (var item in Model)
             {
             <div class="col-md-3 grid-top">
-                <a href="single.html" class="b-link-stripe b-animate-go  thickbox">
+                <a href="@Url.Action("XemChiTiet","SanPham", new { id=item.MaSP})" class="b-link-stripe b-animate-go  thickbox">
                     <img class="img-responsive" src="@Url.Content("~/Content/HinhAnhSP/"+item.HinhAnh)" style="font-size:10px;text-align:left" alt="">
                     <div class="b-wrapper">
-                        <h3 class="b-animate b-from-left    b-delay03 ">
+                        <h3 class="b-animate b-from-left  text-font-size-6  b-delay03 ">
                             <span>@item.CauHinh</span>
                         </h3>
                     </div>
                 </a>
-                <p><a href="single.html">@item.TenSP</a></p>
+                <p class="text-font-size-8"><a href="single.html">@item.TenSP</a></p>
             </div>
         }
         <div class="clearfix"></div>

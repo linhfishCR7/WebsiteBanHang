@@ -18,7 +18,6 @@ namespace WebsiteBanHang.Models
         public DonDatHang()
         {
             this.ChiTietDonDatHangs = new HashSet<ChiTietDonDatHang>();
-            this.Tables = new HashSet<Table>();
         }
     
         public int MaDDH { get; set; }
@@ -32,7 +31,5 @@ namespace WebsiteBanHang.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDonDatHang> ChiTietDonDatHangs { get; set; }
         public virtual KhachHang KhachHang { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Table> Tables { get; set; }
     }
 }

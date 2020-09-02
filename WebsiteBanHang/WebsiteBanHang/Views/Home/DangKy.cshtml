@@ -1,0 +1,67 @@
+﻿@model WebsiteBanHang.Models.ThanhVien 
+@using CaptchaMvc.HtmlHelpers;
+@using CaptchaMvc;
+
+
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Layout/LoginUserLayout.cshtml";
+}
+
+<div class="container">
+    <div class="register">
+        <h1>Register</h1>
+        @using (Html.BeginForm())
+        {
+            <div class="col-md-6 register-top-grid">
+                <h3>Thông Tin Cá Nhân</h3>
+                <div>
+                    <span>@Html.LabelFor(model => model.TaiKhoan, htmlAttributes: new { @class = "control-label  " })</span>
+                    @Html.TextBox("TaiKhoan")
+                </div>
+                <div>
+                    <span>@Html.LabelFor(model => model.HoTen, htmlAttributes: new { @class = "control-label  " })</span>
+                    @Html.TextBox("HoTen")
+                </div>
+                <div>
+                    <span>@Html.LabelFor(model => model.DiaChi, htmlAttributes: new { @class = "control-label  " })</span>
+                    @Html.TextBox("DiaChi")
+                </div>
+                <div>
+                    <span>@Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label  " })</span>
+                    @Html.TextBox("Email")
+                </div>
+
+            </div>
+            <div class="col-md-6 register-bottom-grid register-top-grid">
+                <h3>Thông Tin Đăng Nhập</h3>
+                <div>
+                    <span>@Html.LabelFor(model => model.MatKhau, htmlAttributes: new { @class = "control-label  " })</span>
+                    @Html.Password("Password")
+                </div>
+                <div>
+                    <span>Confirm Password</span>
+                    @Html.Password("NhapLaiPassword")
+                </div>
+                <div>
+                    <span>@Html.LabelFor(model => model.CauHoi, htmlAttributes: new { @class = "control-label  " })</span>
+                    @Html.DropDownList("CauHoi")
+                </div>
+                <div>
+                    <span>@Html.LabelFor(model => model.CauTraLoi, htmlAttributes: new { @class = "control-label  " })</span>
+                    @Html.TextBox("CauTraLoi")
+                </div>
+                <div>
+                    <span>Capcha</span>
+                    @Html.MathCaptcha()
+                </div>
+
+                <input type="submit" value="submit">
+
+            </div>
+            <div class="clearfix"> </div>
+        }
+            
+    </div>
+</div>
+<h1 style="color:red;">@ViewBag.ThongBao</h1>
